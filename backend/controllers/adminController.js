@@ -58,7 +58,6 @@ const salt = await bcrypt.genSalt(10)
     const doctorData = {
         name,
         email,
-        password,
         image: imageUrl,
         password: hashedPassword,
         speciality,
@@ -119,5 +118,22 @@ res.status(200).json({
             message: error.message
         })
     }
-};
+}; 
 
+export const  allDoctors = async (req,res) => {
+ try{
+const doctors = await doctorModel.find({
+}).select('-password')
+
+res.json({
+    success:true,
+    doctors
+})
+ }catch(error){
+console.log(error)
+res.json({
+    success:false,
+    message: error.message
+})
+ }
+}
