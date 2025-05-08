@@ -9,6 +9,8 @@ import 'dotenv/config'
 //const dotenv =require('dotenv/config')
 import connectCloudinary from './config/cloudinary.js'
 import adminRouter from './routes/adminRoute.js'
+import doctorRouter from './routes/doctorRoute.js'
+import userRouter from './routes/userRoute.js'
 
 const app = express()
 const port = process.env.PORT || 4000
@@ -21,7 +23,8 @@ app.use(cors())
 
 //api endpoint
 app.use('/api/admin', adminRouter)
-
+app.use('/api/doctor', doctorRouter)
+app.use('/api/user', userRouter)
 //localhost:4400/api/admin/add-doctor
 app.get("/ ", (req,res)=>{
 res.status(200).send({
